@@ -10,24 +10,9 @@ $start = $time;
 
 define("IN_ILV", "YES");
 
-// Copyrights :-)
-
-$ilv = array (
-	"version" => "0.1",
-	"autor" => "hangy hannigan" );
-
 // Loading configuration
 
-$config = array();
-
 require('config.php');
-
-// Checking configuration
-
-if (!isset($config['type']) || !isset($color)) {
-	echo "Fix errors in config.php and try again.\n";
-	exit();
-};
 
 // Load module with regular expressions
 
@@ -53,25 +38,25 @@ $linec = 0;
 
 $file = "logs/" . $_GET['log'];
 
-echo "<html>
-<head>
-<style type=\"text/css\">
-	table.test { font-family: verdana; }
-	th.message { text-align: right; vertical-align: top; color: #7f7f7f; border-right: solid gray 2px; }
-	th.action { text-align: right; vertical-align: top; color: #9c009c; border-right: solid gray 2px; }
-	th.notice { text-align: right; vertical-align: top; color: " . $color[notice] . "; border-right: solid gray 2px; }
-	th.quit { text-align: right; vertical-align: top; color: " . $color[quit] . "; border-right: solid gray 2px; }
-	th.join { text-align: right; vertical-align: top; color: " . $color[join] . "; border-right: solid gray 2px; }
-	th.part { text-align: right; vertical-align: top; color: " . $color[part] . "; border-right: solid gray 2px; }
-	th.nickch { text-align: right; vertical-align: top; color: " . $color[nickch] . "; border-right: solid gray 2px; }
-	th.mode { text-align: right; vertical-align: top; color: " . $color[mode] . "; border-right: solid gray 2px; }
-	th.topic { text-align: right; vertical-align: top; color: " . $color[topic] . "; border-right: solid gray 2px; }
-</style>
-<title>#dev.ru log</title>
-<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=KOI8-R\">
-</head>
-<body bgcolor=\"white\">
-<table class=\"test\" cellspacing=\"0\" width=\"100%\">\n";
+echo "<html>\n";
+echo "<head>\n";
+echo "<style type=\"text/css\">\n";
+echo "\ttable.test { font-family: verdana; }\n";
+echo "\tth.message { text-align: right; vertical-align: top; color: #7f7f7f; border-right: solid gray 2px; }\n";
+echo "\tth.action { text-align: right; vertical-align: top; color: #9c009c; border-right: solid gray 2px; }\n";
+echo "\tth.notice { text-align: right; vertical-align: top; color: " . $color[notice] . "; border-right: solid gray 2px; }\n";
+echo "\tth.quit { text-align: right; vertical-align: top; color: " . $color[quit] . "; border-right: solid gray 2px; }\n";
+echo "\tth.join { text-align: right; vertical-align: top; color: " . $color[join] . "; border-right: solid gray 2px; }\n";
+echo "\tth.part { text-align: right; vertical-align: top; color: " . $color[part] . "; border-right: solid gray 2px; }\n";
+echo "\tth.nickch { text-align: right; vertical-align: top; color: " . $color[nickch] . "; border-right: solid gray 2px; }\n";
+echo "\tth.mode { text-align: right; vertical-align: top; color: " . $color[mode] . "; border-right: solid gray 2px; }\n";
+echo "\tth.topic { text-align: right; vertical-align: top; color: " . $color[topic] . "; border-right: solid gray 2px; }\n";
+echo "</style>\n";
+echo "<title>#dev.ru log " . $_GET['log'] . "</title>\n";
+echo "<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=KOI8-R\">\n";
+echo "</head>\n";
+echo "<body bgcolor=\"white\">\n";
+echo "<table class=\"test\" cellspacing=\"0\" width=\"100%\">\n";
 
 // Remove "bad" symbols; bold, underline and color text
 
@@ -88,10 +73,11 @@ if (!$handle = @fopen($file, "r")) {
 	$buffer = preg_replace("'&'", "&amp;", fgets($handle, $size));
 	$buffer = preg_replace($search, $replace, $buffer);
 		//
-		if (parcheck($linec++) == 0)
-			$bgcolor = "#ccccff";
+		if (parcheck($linec++))
+			$bgcolor = $config['bgcolor1'];
 		else
-			$bgcolor = "#ffffff";
+			$bgcolor = $config['bgcolor0'];
+	$buffer = preg_replace("`((http)+(s)?:(//)|(www\.))((\w|\.|\-|_)+)(/)?(\S+)?`i", "<a href=\"http\\3://\\5\\6\\8\\9\">\\1\\5\\6/\\9</a>", $buffer);
 	switch ($buffer) {
 	case (preg_match($reg['message'], $buffer, $matches)?$buffer:!$buffer):
 		$text = "<tr bgcolor=" . $bgcolor . " valign=\"top\"><th class=\"message\">" . $matches[2] . "</th>\n"
@@ -169,7 +155,9 @@ $time = $time[1] + $time[0];
 $finish = $time;
 $total_time = round(($finish - $start), 6);
 
-echo "<tr bgcolor=\"#f08080\" align=\"center\" valign=\"top\"><td><a href=\"/\">Calendar</a></td><td>Execution time: " . $total_time . " seconds</td><td><a href=\"about.php\">About</a></td></tr>\n";
-echo "</table></body></html>\n";
+echo "<tr bgcolor=\"" . $config['endline'] . "\" align=\"center\" valign=\"top\"><td><a href=\"/\">Calendar</a></td><td>Execution time: " . $total_time . " seconds</td><td><a href=\"about.php\">About</a></td></tr>\n";
+echo "</table>\n";
+echo "</body>\n";
+echo "</html>\n";
 
 ?>
