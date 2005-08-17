@@ -1,13 +1,19 @@
 <?
 
-// $Id$
-
 if (!defined('IN_ILV')) {
 	echo "You cannot access this page directly.\n";
 	exit();
 };
 
-$config['type'] = "eggdrop";
+$config = array(
+	"type" => "eggdrop",
+	"bgcolor0" => "#ccccff",
+	"bgcolor1" => "#ffffff",
+	"endline" => "#f08080",
+
+	"version" => "0.1",
+	"autor" => "hangy hannigan"
+);
 
 $color = array (
 	"time" => "#7f7f7f",
@@ -20,9 +26,7 @@ $color = array (
 	"quit" => "#000000",
 	"notice" => "#7f0000",
 	"topic" => "#009300",
-	"mode" => "#009300" );
-
-$config['version'] = "0.1";
-$config['autor'] = "hangy hannigan";
+	"mode" => "#009300"
+);
 
 ?>
