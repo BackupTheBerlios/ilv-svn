@@ -1,7 +1,5 @@
 <?
 
-// $Id$
-
 // Calculating execution time. First mark
 
 $time = microtime();
@@ -17,7 +15,7 @@ define("IN_ILV", "YES");
 
 $ilv = array (
 	"version" => "0.1",
-	"autor" => "hangy hannigan" );
+	"author" => "hangy hannigan" );
 
 // Loading configuration
 

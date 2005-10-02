@@ -1,7 +1,5 @@
 <?
 
-// $Id$
-
 if (!defined('IN_ILV')) {
 	echo "You cannot access this page directly.\n";
 	exit();
@@ -10,7 +8,7 @@ if (!defined('IN_ILV')) {
 $module = array (
 	"name" => "eggdrop",
 	"version" => "0.1",
-	"autor" => "hangy hannigan" );
+	"author" => "hangy hannigan" );
 
 $reg_time = "\[\d{2}:\d{2}\]";
 $reg_nick = "[\w\d\-\|\[\|\]\|\\\`\^\{\}]{1,30}";
@@ -26,4 +24,7 @@ $reg = array (
 	"mode" => "/($reg_time)\ $reg_chan:\ mode\ change\ \'(.*)'\ by\ ($reg_nick\!.+@.+)/",
 	"notice" => "/($reg_time)\ (\-$reg_nick:$reg_chan\-)\ (.*)/",
 	"topic" => "/($reg_time)\ Topic\ changed\ on\ ($reg_chan)\ by\ ($reg_nick\!.+@.+):\ (.*)/" );
+
+// vim: ts=4
+
 ?>

@@ -4,10 +4,30 @@
 # "*" - file changed #
 ######################
 
+02.10.2005
+
+* index.php
+	language support for months added;
+
+* config.php
+	$config[language] parameter added;
+	$config[autor] changed to $config[author] :-);
+
+* modules/eggdrop.php
+	$module[autor] changed to $module[author];
+
+* lv.php
+	$ilv[autor] changed to $ilv[author];
+
+* ilv.php
+
++ languages/
++ languages/ru.php
+
 12.09.2005
 
 * index.php
-	* "September" bug fixed;
+	"September" bug fixed;
 
 17.08.2005
 
@@ -26,3 +46,5 @@
 	lame URL hilighting added;
 	html output fixed;
 	lame title support added;
+
+// vim: ts=4

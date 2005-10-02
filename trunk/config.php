@@ -10,9 +10,10 @@ $config = array(
 	"bgcolor0" => "#ccccff",
 	"bgcolor1" => "#ffffff",
 	"endline" => "#f08080",
+	"language" => "ru",
 
 	"version" => "0.1",
-	"autor" => "hangy hannigan"
+	"author" => "hangy hannigan"
 );
 
 $color = array (

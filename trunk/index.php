@@ -1,33 +1,24 @@
 <?
 
-// $Id$
+define("IN_ILV", "YES");
+
+require('config.php');
+
+if (isset($config[language]))
+	require("languages/$config[language].php");
 
 echo "<html>
 <head>
 <title>Calendar</title>
 </head>
-<center>"
+<center>\n";
+
 echo date("Y")."\n";
-?>
-<table cellpadding="5" cellspacing="1">
-<tr>
-<?
+
+echo "<table cellpadding=\"5\" cellspacing=\"1\">
+<tr>\n";
 
 $logs = "/home/eggdrop/www/devru.irssi.ru/logs/";
-
-$month = array (
-	1 => "Январь",
-	2 => "Февраль",
-	3 => "Март",
-	4 => "Апрель",
-	5 => "Май",
-	6 => "Июнь",
-	7 => "Июль",
-	8 => "Август",
-	9 => "Сентябрь",
-	10 => "Октябрь",
-	11 => "Ноябрь",
-	12 => "Декабрь" );
 
 $month2 = array (
 	1 => "Jan",
@@ -49,7 +40,7 @@ function showday($dw) {
 	if ($dw == 2 && $i == 1)
 		echo "<td></td>\n";
 	elseif ($i == 1 && $dw != 1)
-			echo "<td colspan=\"" . ($dw - 1) . "\"></td>\n";
+		echo "<td colspan=\"" . ($dw - 1) . "\"></td>\n";
 	if (file_exists($logs . $log))
 		echo "<td><a href=\"lv.php?log=" . $log . "\">" . $i . "</a></td>\n";
 	else
@@ -66,7 +57,7 @@ for ($monthNum = 1; $monthNum <= 12; $monthNum++) {
 	echo "<table>\n";
 	echo "<tr>\n";
 	echo "<td align=\"center\" colspan=\"7\"><b>";
-	echo $month[$cmonth];
+	echo $locale_month[$cmonth];
 	echo "</b></td>\n";
 	echo "</tr>\n";
 	echo "<tr>\n";
@@ -90,22 +81,7 @@ if ($i < 10 && $i > 0) {
 
 $log = "dev.ru.log." . $lala . $month2[$cmonth] . $year;
 
-	if ($dow == 1)
-		showday($dow);
-
-	if ($dow == 2)
-		showday($dow);
-
-	if ($dow == 3)
-		showday($dow);
-
-	if ($dow == 4)
-		showday($dow);
-
-	if ($dow == 5)
-		showday($dow);
-
-	if ($dow == 6)
+	if (($dow > 0) && ($dow < 7))
 		showday($dow);
 
 	if ($dow == 0) {
@@ -132,9 +108,12 @@ $log = "dev.ru.log." . $lala . $month2[$cmonth] . $year;
 	};
 };
 
-?>
-</tr>
+echo "</tr>
 </tr>
 </table>
 </center>
-</html>
+</html>\n";
+
+// vim: ts=4
+
+?>
